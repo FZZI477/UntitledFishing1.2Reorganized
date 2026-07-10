@@ -14,6 +14,7 @@ const naturalMutations = [
       { name:"Ruinous", multiplier:2.4, chance:0.0068 },
       { name:"Silver", multiplier:2, chance:0.003 },
       { name:"Gold", multiplier:3, chance:0.001 },
+      { name:"Blighted", multiplier:1.45, chance:0.75 },
       { name:"Prismatic", multiplier:5, chance:0.0003 },
       { name:"Hacked", multiplier:-0.1, chance:0.000001 }
     ];
