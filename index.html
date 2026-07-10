@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Untitled Fishing</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div class="title-wrap">
+        <h1>Untitled Fishing</h1>
+        <p class="subtitle">Master every bestiary and forge your way toward Bellona's Harpoon.</p>
+      </div>
+      <div class="top-stats">
+        <div class="pill">💵 <strong id="money">$0</strong></div>
+        <div class="pill">🎣 <strong id="equippedTop">Twig Rod</strong></div>
+        <div class="pill"><span id="periodIcon">☀️</span> <strong id="periodLabel">Day</strong> <span id="periodTimer">10:00</span></div>
+        <div class="pill">🌦️ <strong id="weatherLabel">Clear</strong> <span id="weatherTimer">5:00</span></div>
+        <div class="pill">🦈 <strong id="eventLabel">No Event</strong></div>
+      </div>
+    </header>
+
+    <section class="layout">
+      <div class="stack">
+        <section id="locationHero" class="panel location-hero">
+          <div class="hero-content">
+            <h2 id="locationName">The Gravitas Waterfall</h2>
+            <p id="locationDesc">A roaring basin where ordinary river fish drift beside things pulled in by impossible gravity.</p>
+            <button id="fishButton" class="fish-btn">Cast with Twig Rod</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h3>Fishing Status</h3>
+          <div class="two-col">
+            <div>
+              <div class="small">Active rod stats</div>
+              <div id="activeStats"></div>
+            </div>
+            <div>
+              <div class="small">Area completion</div>
+              <div class="progress-shell"><div id="areaProgress" class="progress-bar"></div></div>
+              <div id="areaCompletionText" class="completion"></div>
+            </div>
+          </div>
+          <div class="footer-actions">
+            <button id="switchLocationBtn">Travel to Aurora Pond</button>
+            <button id="sellAllBtn">Sell All Fish</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h3>Recent Activity</h3>
+          <div id="log" class="log"></div>
+        </section>
+      </div>
+
+      <section class="panel">
+        <div class="tabs">
+          <button class="tab active" data-tab="rods">Rods</button>
+          <button class="tab" data-tab="bestiary">Bestiary</button>
+          <button class="tab" data-tab="inventory">Inventory</button>
+          <button class="tab" data-tab="codes">Codes</button>
+          <button class="tab" data-tab="shop">Shop</button>
+          <button class="tab" data-tab="help">How to Play</button>
+        </div>
+
+        <div id="rods" class="tab-view active"></div>
+        <div id="bestiary" class="tab-view"></div>
+        <div id="inventory" class="tab-view"></div>
+        <div id="shop" class="tab-view">
+          <h3>General Shop</h3>
+          <div class="rod-card">
+            <div class="rod-head"><div><strong>Sunstone</strong><div class="small">Skip the current day or night period once.</div></div><button id="buySunMaskBtn">Buy $300</button></div>
+            <div id="sunMaskCount" class="small">Owned: 0</div>
+          </div>
+          <button id="useSunMaskBtn">Use Sunstone</button>
+        </div>
+        <div id="codes" class="tab-view">
+          <h3>Redeem Codes</h3>
+          <p class="small">Codes can be redeemed once per save file.</p>
+          <div class="footer-actions">
+            <input id="codeInput" type="text" placeholder="Enter a code" autocomplete="off" />
+            <button id="redeemCodeBtn">Redeem</button>
+          </div>
+          <p id="codeMessage" class="small"></p>
+          <div class="rod-card">
+            <strong>Active code effects</strong>
+            <div id="codeEffects" class="small">None</div>
+          </div>
+        </div>
+        <div id="help" class="tab-view">
+          <h3>How to Play</h3>
+          <p>Cast your line, wait for the lure, then click the shaking circles before they vanish. Each successful click adds 5% catch progress.</p>
+          <p>Steadiness now extends every shake's lifetime by 0.06 seconds per point. Luck shifts your fish roll toward rarer catches, while Haste shortens lure time.</p>
+          <p>Every successful catch can naturally receive one mutation. Mutations change its selling value, and some only appear at night.</p>
+          <p>Day and night each last ten real minutes. Certain Aurora Pond fish and rod bonuses only work during one period.</p>
+          <p>Most Unknown and Extinct fish are optional, but marked event creatures such as Megalodon and Godgazer are required.</p>
+          <div class="footer-actions">
+            <button id="resetBtn">Reset Save Data</button>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+  <div id="fatalError" style="display:none;position:fixed;left:12px;right:12px;bottom:12px;z-index:9999;background:#5d1320;color:white;border:2px solid #ff8798;border-radius:12px;padding:12px;white-space:pre-wrap;font-family:monospace"></div>
+
+  <div id="minigameModal" class="modal">
+    <div id="minigameBox" class="minigame-box">
+      <div class="mini-hud">
+        <strong id="miniFish">Something is biting...</strong>
+        <div class="progress-shell"><div id="catchProgress" class="progress-bar"></div></div>
+        <span id="miniInfo">Hits: 0/20</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="resultModal" class="modal">
+    <div class="result-card">
+      <h2 id="resultTitle">Catch Result</h2>
+      <p id="resultText"></p>
+      <button id="resultClose">Continue</button>
+    </div>
+  </div>
+
+  <script src="weather.js"></script>
+  <script src="fish.js"></script>
+  <script src="events.js"></script>
+  <script src="mutations.js"></script>
+  <script src="rods.js"></script>
+  <script src="saves.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
